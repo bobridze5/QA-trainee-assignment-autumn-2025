@@ -1,15 +1,20 @@
 package tests;
 
+import io.restassured.filter.log.UrlDecoder;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pojo.announcement.AnnouncementRequest;
+import pojo.announcement.AnnouncementResponse;
 import utils.helpers.AnnouncementUtils;
 import utils.requests.BaseRequest;
 import utils.helpers.DataProviders;
-import utils.helpers.UUIDValidator;
+import utils.helpers.Validator;
 import utils.requests.Endpoint;
+
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class AnnouncementTest extends BaseTest {
     private SoftAssert softy;
@@ -34,7 +39,7 @@ public class AnnouncementTest extends BaseTest {
             dataProvider = "announcementPositiveData",
             dataProviderClass = DataProviders.class
     )
-    void saveAnnouncement_should_return_200(
+    void saveAnnouncement_success_should_return_200_and_announcementID(
             Integer sellerID,
             String name,
             Integer price,
@@ -58,15 +63,15 @@ public class AnnouncementTest extends BaseTest {
                 .extract().jsonPath().getString("status");
 
         String UUID = str.split(" ")[3];
-        softy.assertTrue(UUIDValidator.isValidUUID(UUID), "Вернулась строка отличная от UUID");
+        softy.assertTrue(Validator.isValidUUID(UUID), "Вернулась строка отличная от UUID");
     }
 
     @Test(
             description = "TR002 Неуспешное сохранение объявления",
-            dataProvider = "announcementNegativeData",
+            dataProvider = "getNegativeAnnouncementData",
             dataProviderClass = DataProviders.class
     )
-    void saveAnnouncement_should_return_400(
+    void saveAnnouncement_failed_should_return_400_and_statusMessage(
             Integer sellerID,
             String name,
             Integer price,
@@ -95,9 +100,9 @@ public class AnnouncementTest extends BaseTest {
     }
 
     @Test(
-            description = "TR003 Успешное получение поста по ID поста"
+            description = "TR003 Успешное получение данных объявления по id"
     )
-    void getAnnouncement_should_return_200() {
+    void getAnnouncement_success_should_return_200_and_announcementData() {
         Integer sellerID = 1111233;
         String name = "testItem";
         Integer price = 1000;
@@ -105,7 +110,7 @@ public class AnnouncementTest extends BaseTest {
         Integer viewCount = 20;
         Integer contacts = 110;
 
-        String id = AnnouncementUtils.createAnnouncementAndGetId(
+        String announcementId = AnnouncementUtils.createAnnouncementAndGetId(
                 sellerID,
                 name,
                 price,
@@ -114,13 +119,53 @@ public class AnnouncementTest extends BaseTest {
                 contacts
         );
 
-        System.out.println(id);
-
-        Response response = BaseRequest.getRequest(Endpoint.GET_ANNOUNCEMENT,id);
-
+        Response response = BaseRequest.getRequest(Endpoint.GET_ANNOUNCEMENT, announcementId);
         response.then().statusCode(200);
 
+        AnnouncementResponse announcement = List.of(response.getBody().as(AnnouncementResponse[].class)).getFirst();
+        softy.assertEquals(announcement.getId(), announcementId, "Id объявления не совпали");
+        softy.assertEquals(announcement.getName(), name, "Name объявления не совпали");
+        softy.assertEquals(announcement.getPrice(), price, "Price объявления не совпали");
+        softy.assertEquals(announcement.getStatistics().getLikes(), likes,
+                "Likes объявления не совпали");
+        softy.assertEquals(announcement.getStatistics().getViewCount(), viewCount,
+                "viewCount объявления не совпали");
+        softy.assertEquals(announcement.getStatistics().getContacts(), contacts,
+                "Contacts объявления не совпали");
+    }
 
+    @Test(
+            description = "TR004 Неуспешное получение данных объявления при невалидном id объявления",
+            dataProvider = "announcementInvalidId",
+            dataProviderClass = DataProviders.class
+    )
+    void getAnnouncement_failed_should_return_400_and_statusMessage(String id) {
+        Response response = BaseRequest.getRequest(Endpoint.GET_ANNOUNCEMENT, id);
+
+        String message = response.then()
+                .statusCode(400)
+                .extract().jsonPath().getString("result.message");
+
+        String[] parts = message.split(":");
+        message = parts[0] + ":" + UrlDecoder.urlDecode(parts[1], StandardCharsets.UTF_8, false);
+
+        String expectedMessage = "ID айтема не UUID: " + id;
+        softy.assertEquals(message, expectedMessage, "Сообщения об ошибке не совпали");
+    }
+
+    @Test(
+            description = "TR005 Неуспешное получение данных объявления при валидном id объявления",
+            dataProvider = "announcementCorrectIdDoestExits",
+            dataProviderClass = DataProviders.class
+    )
+    void getAnnouncement_failed_should_return_404_and_statusMessage(String id) {
+        Response response = BaseRequest.getRequest(Endpoint.GET_ANNOUNCEMENT, id);
+        String message = response.then()
+                .statusCode(404)
+                .extract().jsonPath().getString("result.message");
+
+        String expectedMessage = "item " + id + " not found";
+        softy.assertEquals(message, expectedMessage, "Сообщения об ошибке не совпали");
     }
 
 
