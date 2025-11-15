@@ -6,6 +6,7 @@ import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pojo.announcement.AnnouncementRequest;
 import pojo.announcement.AnnouncementResponse;
+import pojo.announcement.Statistics;
 import utils.helpers.AnnouncementUtils;
 import utils.requests.BaseRequest;
 import utils.helpers.DataProviders;
@@ -40,7 +41,7 @@ public class AnnouncementTest extends BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    void clearTestData(){
+    void clearTestData() {
         AnnouncementUtils.deleteAllAnnouncements();
     }
 
@@ -182,7 +183,7 @@ public class AnnouncementTest extends BaseTest {
             dataProvider = "announcementCount",
             dataProviderClass = DataProviders.class
     )
-    void getAnnouncements_by_sellerID_success_should_return_200_and_list_announcementData(int count){
+    void getAnnouncements_by_sellerID_success_should_return_200_and_list_announcementData(int count) {
         List<String> createdIds = AnnouncementUtils.createAndGetIdsAnnouncements(count);
         Set<String> expectedIds = new HashSet<>(createdIds);
 
@@ -207,7 +208,7 @@ public class AnnouncementTest extends BaseTest {
             dataProvider = "announcementInvalidSellerID",
             dataProviderClass = DataProviders.class
     )
-    void getAnnouncements_by_sellerID_failed_should_return_400_and_statusMessage(String sellerID){
+    void getAnnouncements_by_sellerID_failed_should_return_400_and_statusMessage(String sellerID) {
         Response response = BaseRequest.getRequest(Endpoint.GET_ALL_ANNOUNCEMENT, sellerID);
 
         String actualMessage = response.then()
@@ -215,6 +216,66 @@ public class AnnouncementTest extends BaseTest {
                 .extract().jsonPath().getString("result.message");
 
         String expectedMessage = "передан некорректный идентификатор продавца";
+        softy.assertEquals(actualMessage, expectedMessage, "Сообщения об ошибке не совпадают");
+    }
+
+    @Test(description = "TR008 Успешное получение статистики объявления по id")
+    void getAnnouncementStatistic_success_should_return_200_and_statisticData() {
+        String name = "testItem";
+        Integer price = 1000;
+        Integer likes = 10;
+        Integer viewCount = 20;
+        Integer contacts = 110;
+
+        String id = AnnouncementUtils.createAnnouncementAndGetId(
+                sellerID,
+                name,
+                price,
+                likes,
+                viewCount,
+                contacts
+        );
+
+        Response response = BaseRequest.getRequest(Endpoint.GET_ANNOUNCEMENT_STATISTICS, id);
+        response.then().statusCode(200);
+
+        Statistics statistics = List.of(response.getBody().as(Statistics[].class)).getFirst();
+
+        softy.assertEquals(statistics.getLikes(), likes, "likes не совпадают");
+        softy.assertEquals(statistics.getViewCount(), viewCount, "viewCount не совпадают");
+        softy.assertEquals(statistics.getContacts(), contacts, "contacts не совпадают");
+    }
+
+    @Test(
+            description = "TR009 Неуспешное получение статистики объявления при невалидном id",
+            dataProvider = "announcementInvalidId",
+            dataProviderClass = DataProviders.class
+    )
+    void getAnnouncementStatistic_failed_should_return_400_and_statusMessage(String id) {
+        Response response = BaseRequest.getRequest(Endpoint.GET_ANNOUNCEMENT_STATISTICS, id);
+
+        String actualMessage = response.then()
+                .statusCode(400)
+                .extract().jsonPath().getString("result.message");
+
+        String expectedMessage = "передан некорректный идентификатор объявления";
+        softy.assertEquals(actualMessage, expectedMessage, "Сообщения об ошибке не совпадают");
+    }
+
+
+    @Test(
+            description = "TR010 Неуспешное получение статистики объявления при валидном id",
+            dataProvider = "announcementCorrectIdDoestExits",
+            dataProviderClass = DataProviders.class
+    )
+    void getAnnouncementStatistic_failed_should_return_404_and_statusMessage(String id){
+        Response response = BaseRequest.getRequest(Endpoint.GET_ANNOUNCEMENT_STATISTICS, id);
+
+        String actualMessage = response.then()
+                .statusCode(404)
+                .extract().jsonPath().getString("result.message");
+
+        String expectedMessage = "statistic " + id + " not found";
         softy.assertEquals(actualMessage, expectedMessage, "Сообщения об ошибке не совпадают");
     }
 

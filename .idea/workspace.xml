@@ -6,23 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1d7a3741-5f7d-4195-9fb1-90749316c66c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/pojo/announcement/AnnouncementResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/java/pojo/announcement/AnnouncementResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/tests/AnnouncementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/java/tests/AnnouncementTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/utils/helpers/AnnouncementUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/helpers/AnnouncementUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/utils/helpers/DataProviders.java" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/helpers/DataProviders.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/utils/helpers/Validator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/utils/requests/BaseRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/requests/BaseRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/utils/requests/Endpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/requests/Endpoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Task2.1/src/test/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/resources/config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/pojo/announcement/AnnouncementResponse$AnnouncementResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/pojo/announcement/AnnouncementResponse$AnnouncementResponseBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/pojo/announcement/AnnouncementResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/pojo/announcement/AnnouncementResponse.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/tests/AnnouncementTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/tests/AnnouncementTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/utils/helpers/AnnouncementUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/utils/helpers/AnnouncementUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/utils/helpers/DataProviders.class" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/utils/helpers/DataProviders.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/utils/helpers/Validator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/utils/requests/BaseRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/utils/requests/BaseRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/utils/requests/Endpoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/utils/requests/Endpoint.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +58,9 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "TestNG.AnnouncementTest.executor": "Run",
     "TestNG.AnnouncementTest.fastClear.executor": "Run",
+    "TestNG.AnnouncementTest.getAnnouncementStatistic_failed_should_return_400_and_statusMessage.executor": "Run",
+    "TestNG.AnnouncementTest.getAnnouncementStatistic_failed_should_return_404_and_statusMessage.executor": "Run",
+    "TestNG.AnnouncementTest.getAnnouncementStatistic_success_should_return_200_and_statisticData.executor": "Run",
     "TestNG.AnnouncementTest.getAnnouncement_failed_should_return_400_and_statusMessage.executor": "Run",
     "TestNG.AnnouncementTest.getAnnouncement_failed_should_return_404_and_statusMessage.executor": "Run",
     "TestNG.AnnouncementTest.getAnnouncement_should_return_200.executor": "Run",
@@ -95,7 +85,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.AnnouncementTest.getAnnouncements_by_sellerID_failed_should_return_400_and_statusMessage">
+  <component name="RunManager" selected="TestNG.AnnouncementTest">
     <configuration name="AnnouncementTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Task2.1" />
       <extension name="coverage">
@@ -113,7 +103,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AnnouncementTest.fastClear" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="AnnouncementTest.getAnnouncementStatistic_failed_should_return_400_and_statusMessage" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Task2.1" />
       <extension name="coverage">
         <pattern>
@@ -123,7 +113,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.AnnouncementTest" />
-      <option name="METHOD_NAME" value="fastClear" />
+      <option name="METHOD_NAME" value="getAnnouncementStatistic_failed_should_return_400_and_statusMessage" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -131,7 +121,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AnnouncementTest.getAnnouncement_failed_should_return_404_and_statusMessage" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="AnnouncementTest.getAnnouncementStatistic_failed_should_return_404_and_statusMessage" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Task2.1" />
       <extension name="coverage">
         <pattern>
@@ -141,7 +131,25 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.AnnouncementTest" />
-      <option name="METHOD_NAME" value="getAnnouncement_failed_should_return_404_and_statusMessage" />
+      <option name="METHOD_NAME" value="getAnnouncementStatistic_failed_should_return_404_and_statusMessage" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AnnouncementTest.getAnnouncementStatistic_success_should_return_200_and_statisticData" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Task2.1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.AnnouncementTest" />
+      <option name="METHOD_NAME" value="getAnnouncementStatistic_success_should_return_200_and_statisticData" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -167,31 +175,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AnnouncementTest.getAnnouncements_by_sellerID_success_should_return_200_and_list_announcementData" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="Task2.1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.AnnouncementTest" />
-      <option name="METHOD_NAME" value="getAnnouncements_by_sellerID_success_should_return_200_and_list_announcementData" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.AnnouncementTest.getAnnouncements_by_sellerID_failed_should_return_400_and_statusMessage" />
         <item itemvalue="TestNG.AnnouncementTest" />
-        <item itemvalue="TestNG.AnnouncementTest.getAnnouncements_by_sellerID_success_should_return_200_and_list_announcementData" />
-        <item itemvalue="TestNG.AnnouncementTest.fastClear" />
-        <item itemvalue="TestNG.AnnouncementTest.getAnnouncement_failed_should_return_404_and_statusMessage" />
+        <item itemvalue="TestNG.AnnouncementTest.getAnnouncementStatistic_failed_should_return_404_and_statusMessage" />
+        <item itemvalue="TestNG.AnnouncementTest.getAnnouncementStatistic_failed_should_return_400_and_statusMessage" />
+        <item itemvalue="TestNG.AnnouncementTest.getAnnouncementStatistic_success_should_return_200_and_statisticData" />
+        <item itemvalue="TestNG.AnnouncementTest.getAnnouncements_by_sellerID_failed_should_return_400_and_statusMessage" />
       </list>
     </recent_temporary>
   </component>
