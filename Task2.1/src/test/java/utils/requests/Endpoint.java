@@ -10,7 +10,8 @@ public enum Endpoint {
     CREATE_ANNOUNCEMENT("route.announcement.post"),
     GET_ANNOUNCEMENT("route.announcement.get"),
     GET_ANNOUNCEMENT_STATISTICS("route.announcement.get.statistics"),
-    GET_ALL_ANNOUNCEMENT("route.announcement.get.all");
+    GET_ALL_ANNOUNCEMENT("route.announcement.get.all"),
+    DELETE_ANNOUNCEMENT("route.announcement.delete");
 
 
     private static final PropertyProvider provider = PropertyProvider.getInstance();

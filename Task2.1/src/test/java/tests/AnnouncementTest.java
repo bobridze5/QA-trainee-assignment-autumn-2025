@@ -2,7 +2,6 @@ package tests;
 
 import io.restassured.filter.log.UrlDecoder;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pojo.announcement.AnnouncementRequest;
@@ -10,18 +9,24 @@ import pojo.announcement.AnnouncementResponse;
 import utils.helpers.AnnouncementUtils;
 import utils.requests.BaseRequest;
 import utils.helpers.DataProviders;
-import utils.helpers.Validator;
 import utils.requests.Endpoint;
 
 import java.nio.charset.StandardCharsets;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class AnnouncementTest extends BaseTest {
     private SoftAssert softy;
+    private Integer sellerID;
 
     @BeforeClass
     void setUp() {
+        super.setProvider();
+        sellerID = Integer.parseInt(provider.getProperty("announcement.user.id"));
         BaseRequest.init();
+
+        AnnouncementUtils.deleteAllAnnouncements();
     }
 
     @BeforeMethod
@@ -29,9 +34,14 @@ public class AnnouncementTest extends BaseTest {
         softy = new SoftAssert();
     }
 
-    @AfterMethod
+    @AfterMethod(dependsOnMethods = {"clearTestData"})
     void assertSoftyAll() {
         softy.assertAll();
+    }
+
+    @AfterMethod(alwaysRun = true)
+    void clearTestData(){
+        AnnouncementUtils.deleteAllAnnouncements();
     }
 
     @Test(
@@ -63,12 +73,12 @@ public class AnnouncementTest extends BaseTest {
                 .extract().jsonPath().getString("status");
 
         String UUID = str.split(" ")[3];
-        softy.assertTrue(Validator.isValidUUID(UUID), "Вернулась строка отличная от UUID");
+        softy.assertTrue(AnnouncementUtils.isValidUUID(UUID), "Вернулась строка отличная от UUID");
     }
 
     @Test(
             description = "TR002 Неуспешное сохранение объявления",
-            dataProvider = "getNegativeAnnouncementData",
+            dataProvider = "announcementNegativeData",
             dataProviderClass = DataProviders.class
     )
     void saveAnnouncement_failed_should_return_400_and_statusMessage(
@@ -96,14 +106,13 @@ public class AnnouncementTest extends BaseTest {
                 .statusCode(400)
                 .extract().jsonPath().getString("result.message");
 
-        Assert.assertEquals(resultMessage, expectedMessage);
+        softy.assertEquals(resultMessage, expectedMessage);
     }
 
     @Test(
             description = "TR003 Успешное получение данных объявления по id"
     )
     void getAnnouncement_success_should_return_200_and_announcementData() {
-        Integer sellerID = 1111233;
         String name = "testItem";
         Integer price = 1000;
         Integer likes = 10;
@@ -168,5 +177,45 @@ public class AnnouncementTest extends BaseTest {
         softy.assertEquals(message, expectedMessage, "Сообщения об ошибке не совпали");
     }
 
+    @Test(
+            description = "TR006 Успешное получение всех постов пользователя",
+            dataProvider = "announcementCount",
+            dataProviderClass = DataProviders.class
+    )
+    void getAnnouncements_by_sellerID_success_should_return_200_and_list_announcementData(int count){
+        List<String> createdIds = AnnouncementUtils.createAndGetIdsAnnouncements(count);
+        Set<String> expectedIds = new HashSet<>(createdIds);
+
+        Response response = BaseRequest.getRequest(Endpoint.GET_ALL_ANNOUNCEMENT, String.valueOf(sellerID));
+        response.then().statusCode(200);
+        List<AnnouncementResponse> announcements = List.of(response.getBody().as(AnnouncementResponse[].class));
+
+        softy.assertEquals(announcements.size(), count, "Неверное количество объявлений");
+        Set<String> actualIds = new HashSet<>();
+
+        for (var announcement : announcements) {
+            softy.assertEquals(announcement.getSellerId(), sellerID, "Объявление не принадлежит пользователю");
+            actualIds.add(announcement.getId());
+        }
+
+        softy.assertTrue(actualIds.containsAll(expectedIds), "Не все созданные ID присутствуют");
+        softy.assertEquals(actualIds.size(), expectedIds.size(), "Есть лишние или дублирующиеся ID");
+    }
+
+    @Test(
+            description = "TR007 Успешное получение всех постов пользователя",
+            dataProvider = "announcementInvalidSellerID",
+            dataProviderClass = DataProviders.class
+    )
+    void getAnnouncements_by_sellerID_failed_should_return_400_and_statusMessage(String sellerID){
+        Response response = BaseRequest.getRequest(Endpoint.GET_ALL_ANNOUNCEMENT, sellerID);
+
+        String actualMessage = response.then()
+                .statusCode(400)
+                .extract().jsonPath().getString("result.message");
+
+        String expectedMessage = "передан некорректный идентификатор продавца";
+        softy.assertEquals(actualMessage, expectedMessage, "Сообщения об ошибке не совпадают");
+    }
 
 }

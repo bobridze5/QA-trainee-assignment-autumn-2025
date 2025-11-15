@@ -13,6 +13,9 @@ public class AnnouncementResponse {
     @SerializedName("id")
     String id;
 
+    @SerializedName("sellerId")
+    Integer sellerId;
+
     @SerializedName("name")
     String name;
 

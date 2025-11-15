@@ -39,4 +39,11 @@ public class BaseRequest {
                 .when()
                 .get(endpoint.getPathWithParams(params));
     }
+
+    public static Response deleteRequest(Endpoint endpoint, String... params) {
+        return given()
+                .spec(specification)
+                .when()
+                .delete(endpoint.getPathWithParams(params));
+    }
 }
