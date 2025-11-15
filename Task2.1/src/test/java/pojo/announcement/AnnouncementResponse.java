@@ -4,11 +4,16 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Value;
 
+import java.time.LocalDateTime;
+
 @Value
 @Builder
-public class AnnouncementRequest {
-    @SerializedName("sellerID")
-    Integer sellerID;
+public class AnnouncementResponse {
+    @SerializedName("createdAt")
+    LocalDateTime createdAt;
+
+    @SerializedName("id")
+    String id;
 
     @SerializedName("name")
     String name;

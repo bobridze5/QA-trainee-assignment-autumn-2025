@@ -5,21 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1d7a3741-5f7d-4195-9fb1-90749316c66c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/TESTCASES.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task2.1/src/test/java/pojo/announcement/AnnouncementRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task2.1/src/test/java/pojo/announcement/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task2.1/src/test/java/tests/AnnouncementTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task2.1/src/test/java/tests/BaseTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/BaseRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/DataProviders.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/PropertyProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/UUIDValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Task2.1/src/test/resources/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/QA-trainee-assignment-autumn-2025.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/QA-trainee-assignment-autumn-2025.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Task2.1/src/test/java/pojo/announcement/AnnouncementResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/helpers/AnnouncementUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/requests/Endpoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Task2.1/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/pojo/announcement/AnnouncementRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/java/pojo/announcement/AnnouncementRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/pojo/announcement/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/java/pojo/announcement/Statistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/tests/AnnouncementTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/java/tests/AnnouncementTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/utils/BaseRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/requests/BaseRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/utils/DataProviders.java" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/helpers/DataProviders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/java/utils/UUIDValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/java/utils/helpers/UUIDValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/src/test/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/src/test/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/pojo/announcement/AnnouncementRequest$AnnouncementRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/pojo/announcement/AnnouncementRequest$AnnouncementRequestBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/pojo/announcement/AnnouncementRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/pojo/announcement/AnnouncementRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/pojo/announcement/Request.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/tests/AnnouncementTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/tests/AnnouncementTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/tests/BaseTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/Task2.1/target/test-classes/tests/BaseTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/utils/BaseRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/utils/DataProviders.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Task2.1/target/test-classes/utils/UUIDValidator.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +35,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="AnnotationType" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -58,23 +65,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "TestNG.AnnouncementTest.executor": "Run",
-    "TestNG.AnnouncementTest.saveAnnouncement_should_return_200.executor": "Run",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/dima1/projects/java/QA/Avito/QA-trainee-assignment-autumn-2025",
-    "onboarding.tips.debug.path": "C:/Users/dima1/projects/java/QA/Avito/QA-trainee-assignment-autumn-2025/Task2.1/src/main/java/ru/avito/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.34530386",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TestNG.AnnouncementTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.AnnouncementTest.getAnnouncement_should_return_200.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.AnnouncementTest.saveAnnouncement_should_return_200.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dima1/projects/java/QA/Avito/QA-trainee-assignment-autumn-2025&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/dima1/projects/java/QA/Avito/QA-trainee-assignment-autumn-2025/Task2.1/src/main/java/ru/avito/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.34530386&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\dima1\projects\java\QA\Avito\QA-trainee-assignment-autumn-2025" />
@@ -83,12 +91,12 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.AnnouncementTest">
+  <component name="RunManager">
     <configuration name="AnnouncementTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Task2.1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="utils.*" />
+          <option name="PATTERN" value="utils.requests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -101,11 +109,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AnnouncementTest.getAnnouncement_should_return_200" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Task2.1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.AnnouncementTest" />
+      <option name="METHOD_NAME" value="getAnnouncement_should_return_200" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AnnouncementTest.saveAnnouncement_should_return_200" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Task2.1" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="utils.*" />
+          <option name="PATTERN" value="utils.requests.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -121,6 +147,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.AnnouncementTest.getAnnouncement_should_return_200" />
         <item itemvalue="TestNG.AnnouncementTest" />
         <item itemvalue="TestNG.AnnouncementTest.saveAnnouncement_should_return_200" />
       </list>

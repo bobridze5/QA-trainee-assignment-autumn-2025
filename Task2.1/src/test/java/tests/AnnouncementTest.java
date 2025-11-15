@@ -4,28 +4,28 @@ import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
-import pojo.announcement.Request;
-import utils.BaseRequest;
-import utils.DataProviders;
-import utils.UUIDValidator;
-
-import java.util.Map;
+import pojo.announcement.AnnouncementRequest;
+import utils.helpers.AnnouncementUtils;
+import utils.requests.BaseRequest;
+import utils.helpers.DataProviders;
+import utils.helpers.UUIDValidator;
+import utils.requests.Endpoint;
 
 public class AnnouncementTest extends BaseTest {
     private SoftAssert softy;
 
     @BeforeClass
     void setUp() {
-        BaseRequest.init(provider.getProperty("route.announcement.create"));
+        BaseRequest.init();
     }
 
     @BeforeMethod
-    void setSoftAssert(){
+    void setSoftAssert() {
         softy = new SoftAssert();
     }
 
     @AfterMethod
-    void assertSoftyAll(){
+    void assertSoftyAll() {
         softy.assertAll();
     }
 
@@ -42,25 +42,23 @@ public class AnnouncementTest extends BaseTest {
             Integer viewCount,
             Integer contacts
     ) {
-        Request announcement = BaseRequest.createAnnouncementRequest(
+        AnnouncementRequest announcement = AnnouncementUtils.createAnnouncement(
                 sellerID,
                 name,
                 price,
-                Map.of(
-                        "likes", likes,
-                        "viewCount", viewCount,
-                        "contacts", contacts
-                )
+                likes,
+                viewCount,
+                contacts
         );
 
-        Response response = BaseRequest.postRequest(announcement);
+        Response response = BaseRequest.postRequest(Endpoint.CREATE_ANNOUNCEMENT, announcement);
 
         String str = response.then()
                 .statusCode(200)
                 .extract().jsonPath().getString("status");
 
         String UUID = str.split(" ")[3];
-        softy.assertTrue(UUIDValidator.isValidUUID(UUID));
+        softy.assertTrue(UUIDValidator.isValidUUID(UUID), "Вернулась строка отличная от UUID");
     }
 
     @Test(
@@ -77,25 +75,52 @@ public class AnnouncementTest extends BaseTest {
             Integer contacts,
             String expectedMessage
     ) {
-        Request request = BaseRequest.createAnnouncementRequest(
+        AnnouncementRequest request = AnnouncementUtils.createAnnouncement(
                 sellerID,
                 name,
                 price,
-                Map.of(
-                        "likes", likes,
-                        "viewCount", viewCount,
-                        "contacts", contacts
-                )
+                likes,
+                viewCount,
+                contacts
         );
 
 
-        Response response = BaseRequest.postRequest(request);
+        Response response = BaseRequest.postRequest(Endpoint.CREATE_ANNOUNCEMENT, request);
 
         String resultMessage = response.then()
                 .statusCode(400)
                 .extract().jsonPath().getString("result.message");
 
         Assert.assertEquals(resultMessage, expectedMessage);
+    }
+
+    @Test(
+            description = "TR003 Успешное получение поста по ID поста"
+    )
+    void getAnnouncement_should_return_200() {
+        Integer sellerID = 1111233;
+        String name = "testItem";
+        Integer price = 1000;
+        Integer likes = 10;
+        Integer viewCount = 20;
+        Integer contacts = 110;
+
+        String id = AnnouncementUtils.createAnnouncementAndGetId(
+                sellerID,
+                name,
+                price,
+                likes,
+                viewCount,
+                contacts
+        );
+
+        System.out.println(id);
+
+        Response response = BaseRequest.getRequest(Endpoint.GET_ANNOUNCEMENT,id);
+
+        response.then().statusCode(200);
+
+
     }
 
 
