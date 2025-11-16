@@ -475,7 +475,7 @@
 }
 ```
 
-2. Отправить POST Отправить POST запрос на https://qa-internship.avito.com/api/1/item
+2. Отправить POST запрос на https://qa-internship.avito.com/api/1/item
 3. Получить от сервера id объявления
 4. Отправить GET запрос на https://qa-internship.avito.com/api/1/item/{id}, передав вместо id = id объявления
 </td>
@@ -549,7 +549,7 @@
 }
 ```
 
-2. Отправить POST Отправить POST запрос на https://qa-internship.avito.com/api/1/item
+2. Отправить POST запрос на https://qa-internship.avito.com/api/1/item
 3. Получить от сервера id объявления
 4. Отправить GET запрос на https://qa-internship.avito.com/api/1/item/{id}, передав вместо id = id объявления
 </td>
@@ -689,7 +689,7 @@
 Статус код - 200 OK<br>
 
 ```json
-  {
+{
   "contacts": 1,
   "likes": 1,
   "viewCount": 1
