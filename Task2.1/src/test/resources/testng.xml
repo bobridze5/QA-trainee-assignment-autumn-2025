@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="announcementSuite" verbose="1">
+    <test name="Announcement">
+        <classes>
+            <class name="tests.AnnouncementTest"/>
+        </classes>
+    </test>
+</suite>

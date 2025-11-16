@@ -1,7 +1,5 @@
 package tests;
 
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
 import io.restassured.filter.log.UrlDecoder;
 import io.restassured.response.Response;
 import org.testng.annotations.*;
@@ -19,8 +17,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Epic("Объявления")
-@Feature("Управление объявлениями")
 public class AnnouncementTest extends BaseTest {
     private SoftAssert softy;
     private Integer sellerID;

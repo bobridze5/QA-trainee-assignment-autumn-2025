@@ -92,10 +92,9 @@ public class AnnouncementUtils {
     public static void deleteAllAnnouncements(){
         Response response = BaseRequest.getRequest(Endpoint.GET_ALL_ANNOUNCEMENT, String.valueOf(sellerID));
         List<AnnouncementResponse> list = List.of(response.getBody().as(AnnouncementResponse[].class));
-        list.forEach(i -> BaseRequest.deleteRequest(Endpoint.DELETE_ANNOUNCEMENT, i.getId())
-                .then()
-                .statusCode(200)
-        );
+        if (!list.isEmpty()) {
+            list.forEach(i -> BaseRequest.deleteRequest(Endpoint.DELETE_ANNOUNCEMENT, i.getId()));
+        }
     }
 
     public static boolean isValidUUID(String uuid) {

@@ -16,7 +16,6 @@ public class BaseRequest {
     private static RequestSpecification specification;
 
     public static void init() {
-        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         RequestSpecBuilder builder = new RequestSpecBuilder();
         specification = builder
                 .setContentType(ContentType.JSON)
